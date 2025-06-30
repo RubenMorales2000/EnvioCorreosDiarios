@@ -1,20 +1,21 @@
-name: Enviar correo diario a las 22:00 hora de España
+name: Enviar correo diario a la hora indicada de España
 
 on:
   schedule:
-    - cron: '* * * * *'  # Corre cada 5 minutos
+    - cron: '* * * * *'  # Corre cada minuto
+  workflow_dispatch: 
 
 jobs:
   enviar-correo:
     runs-on: ubuntu-latest
     steps:
-      - name: Verificar si son las 22:00 en Madrid
+      - name: Verificar si la hora es correcta en Madrid
         uses: frenck/action-rtc@v1
         id: rtc
         with:
           timezone: 'Europe/Madrid'
           hour: '13'
-          minute: '30'
+          minute: '42'
 
       - name: Llamar a la función Netlify
         if: steps.rtc.outputs.match == 'true'
