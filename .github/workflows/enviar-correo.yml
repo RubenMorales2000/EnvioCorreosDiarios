@@ -2,7 +2,7 @@ name: Enviar correo diario a la hora indicada de España
 
 on:
   schedule:
-    - cron: '* * * * *'  # Ejecuta cada minuto
+    - cron: '*/5 * * * *'  # Ejecuta cada 5 minutos
   workflow_dispatch:
 
 jobs:
@@ -17,7 +17,7 @@ jobs:
           echo "hora_madrid=$hora_madrid" >> $GITHUB_OUTPUT
 
       - name: Llamar a la función Netlify si es la hora deseada
-        if: steps.hora.outputs.hora_madrid == '22.00'
+        if: contains('21:59,22:00,22:01,22.02', steps.hora.outputs.hora_madrid)
         run: |
           echo "La hora coincide, llamando a Netlify..."
           curl -s -X GET "https://enviocorreosperiodico.netlify.app/.netlify/functions/enviar-correo"
