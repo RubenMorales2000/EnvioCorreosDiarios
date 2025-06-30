@@ -11,7 +11,7 @@ exports.handler = async function (event, context) {
 
   const info = await transporter.sendMail({
     from: `"Yo Diario" <${process.env.EMAIL_USER}>`,
-    to: process.env.EMAIL_DEST,
+    to: "ruben11112000@gmail.com",
     subject: "Correo Diario",
     text: "Prueba de envio de correo diario",
   });
