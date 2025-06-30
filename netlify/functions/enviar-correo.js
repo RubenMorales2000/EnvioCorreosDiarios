@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 
-exports.handler = async function (event, context) {
+exports.handler = async function () {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -18,6 +18,6 @@ exports.handler = async function (event, context) {
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ message: "Correo enviado", info }),
+    body: JSON.stringify({message:"Correo enviado", info }),
   };
 };
