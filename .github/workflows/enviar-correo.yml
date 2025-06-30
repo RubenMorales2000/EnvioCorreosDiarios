@@ -1,0 +1,21 @@
+name: Enviar correo diario a las 22:00 hora de España
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Corre cada 5 minutos
+
+jobs:
+  enviar-correo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verificar si son las 22:00 en Madrid
+        uses: frenck/action-rtc@v1
+        id: rtc
+        with:
+          timezone: 'Europe/Madrid'
+          hour: '22'
+          minute: '00'
+
+      - name: Llamar a la función Netlify
+        if: steps.rtc.outputs.match == 'true'
+        run: curl -s -X GET "https://enviocorreosperiodico.netlify.app/.netlify/functions/enviar-correo"
