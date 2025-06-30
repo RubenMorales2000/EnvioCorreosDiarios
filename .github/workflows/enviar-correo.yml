@@ -2,21 +2,22 @@ name: Enviar correo diario a la hora indicada de España
 
 on:
   schedule:
-    - cron: '* * * * *'  # Corre cada minuto para pruebas
+    - cron: '* * * * *'  # Ejecuta cada minuto para pruebas
   workflow_dispatch:
 
 jobs:
   enviar-correo:
     runs-on: ubuntu-latest
     steps:
-      - name: Obtener hora local en Madrid
-        id: time
-        uses: igorshubovych/rtc-timezone-action@v1
-        with:
-          timezone: 'Europe/Madrid'
+      - name: Obtener hora actual en Madrid
+        id: hora
+        run: |
+          hora_madrid=$(TZ=Europe/Madrid date +'%H:%M')
+          echo "Hora en Madrid: $hora_madrid"
+          echo "hora_madrid=$hora_madrid" >> $GITHUB_OUTPUT
 
-      - name: Verificar hora y enviar correo
-        if: steps.time.outputs.time == '13:43'
+      - name: Llamar a la función Netlify si es la hora deseada
+        if: steps.hora.outputs.hora_madrid == '13:45'
         run: |
           echo "La hora coincide, llamando a Netlify..."
           curl -s -X GET "https://enviocorreosperiodico.netlify.app/.netlify/functions/enviar-correo"
