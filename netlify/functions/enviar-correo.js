@@ -4,16 +4,16 @@ exports.handler = async function (event, context) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "ruben11112000@gmail.com",
-      pass: "lkjj pbqd mumj zsef",
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
   const info = await transporter.sendMail({
     from: `"Yo Diario" <${process.env.EMAIL_USER}>`,
-    to: "ruben11112000@gmail.com",
-    subject: "Correo Diario",
-    text: "Prueba de envio de correo diario",
+    to: process.env.EMAIL_DEST,
+    subject: "Informe comida diario",
+    text: "https://forms.office.com/Pages/ResponsePage.aspx?id=FBHdc33vx0CGaVadMufim2AMPA_octtFlOXoE2JKGbJUMUlIUFpMTDc0WlZDME1LVFc1WEJQM0JNNC4u",
   });
 
   return {
