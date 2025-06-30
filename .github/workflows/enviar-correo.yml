@@ -13,8 +13,8 @@ jobs:
         id: rtc
         with:
           timezone: 'Europe/Madrid'
-          hour: '22'
-          minute: '00'
+          hour: '13'
+          minute: '25'
 
       - name: Llamar a la función Netlify
         if: steps.rtc.outputs.match == 'true'
