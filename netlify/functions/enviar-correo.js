@@ -1,7 +1,7 @@
-const nodemailer = require("nodemailer");
+import { createTransport } from "nodemailer";
 
-exports.handler = async function () {
-  const transporter = nodemailer.createTransport({
+export async function handler () {
+  const transporter = createTransport({
     service: "gmail",
     auth: {
       user: process.env.EMAIL_USER,
@@ -20,4 +20,4 @@ exports.handler = async function () {
     statusCode: 200,
     body: JSON.stringify({message:"Correo enviado", info}),
   };
-};
+}
