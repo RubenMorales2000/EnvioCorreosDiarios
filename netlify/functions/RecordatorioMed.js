@@ -10,7 +10,7 @@ export async function handler () {
   });
 
   const info = await transporter.sendMail({
-    from: `"Yo Diario " <${process.env.EMAIL_USER}>`,
+    from: `"Recordatorio Medicación" <${process.env.EMAIL_USER}>`,
     to: process.env.EMAIL_DEST,
     subject: "Recordatorio de tomar la medicación",
     text: "Hola, este es un recordatorio para que tomes tu medicación diaria. Por favor, asegúrate de seguir las indicaciones de tu médico. Te quiero mucho mi PCR ❤️.",

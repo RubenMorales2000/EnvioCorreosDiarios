@@ -10,7 +10,7 @@ export async function handler () {
   });
 
   const info = await transporter.sendMail({
-    from: `"Yo" <${process.env.EMAIL_USER}>`,
+    from: `"Rellenar Formulario Diario" <${process.env.EMAIL_USER}>`,
     to: process.env.EMAIL_DEST,
     subject: "Informe comida diario",
     text: "https://forms.office.com/Pages/ResponsePage.aspx?id=FBHdc33vx0CGaVadMufim2AMPA_octtFlOXoE2JKGbJUMUlIUFpMTDc0WlZDME1LVFc1WEJQM0JNNC4u",
