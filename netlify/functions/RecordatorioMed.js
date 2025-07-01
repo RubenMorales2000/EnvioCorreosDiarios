@@ -18,6 +18,6 @@ export async function handler () {
 
   return {
     statusCode: 200,
-    body: JSON.stringify({message:"Correo enviado", info}),
+    body: JSON.stringify({message:"Correo enviado con exito", info}),
   };
 }
