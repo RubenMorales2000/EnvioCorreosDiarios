@@ -13,7 +13,7 @@ export async function handler () {
     from: `<${process.env.EMAIL_USER}>`,
     to: process.env.EMAIL_DEST,
     subject: "Recordatorio de tomar la medicación",
-    text: "Hola, este es un recordatorio para que tomes tu medicación diaria. Por favor, asegúrate de seguir las indicaciones de tu médico. Te quiero mucho mi PCR ❤️",
+    text: "Hola, este es un recordatorio para que tomes tu medicación diaria. Por favor, asegúrate de seguir las indicaciones de tu médico. Te quiero mucho mi PCR ❤️.",
   });
 
   return {
